@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fisika Group - Eventos Deportivos Escolares</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+     <link rel="icon" type="image/png" href="img/IMG11.PNG.jpg">
+    <style>
+        :root {
+            --primary-blue: #1e40af;
+            --secondary-blue: #3b82f6;
+            --light-blue: #dbeafe;
+            --dark-blue: #1e3a8a;
+            --accent-orange: #f97316;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8fafc;
+        }
+        
+        .navbar-brand {
+            color: var(--primary-blue) !important;
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
+            color: white;
+            padding: 4rem 0;
+            margin-bottom: 2rem;
+        }
+        
+        .sport-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-radius: 15px;
+            overflow: hidden;
+            height: 100%;
+        }
+        
+        .sport-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .sport-img {
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-blue);
+            border-color: var(--primary-blue);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--dark-blue);
+            border-color: var(--dark-blue);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+        
+        .team-member {
+            transition: all 0.3s;
+        }
+        
+        .team-member:hover {
+            transform: scale(1.05);
+        }
+        
+        .team-img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border: 5px solid var(--light-blue);
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            border-radius: 50%;
+            background-color: var(--light-blue);
+            color: var(--primary-blue);
+            transition: all 0.3s;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--primary-blue);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        .auth-container {
+            max-width: 500px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .dashboard-header {
+            background: linear-gradient(90deg, var(--primary-blue), var(--secondary-blue));
+            color: white;
+            padding: 2rem 0;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+        }
+        
+        .event-card {
+            border-left: 4px solid var(--accent-orange);
+        }
+        
+        .sport-detail {
+            display: none;
+        }
+        
+        .project-card {
+            transition: all 0.3s;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .review-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                 <header style="display: flex; align-items: center; gap: 10px; padding: 10px;">
+        <img src="img/IMG11.PNG.jpg" alt="Logo del sitio" style="width: 50px; height: 50px;">
+                Fisika Group 
+    </header>
+               
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="inicioLink">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="deportesLink">Deportes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="loginLink">Iniciar Sesión</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="registerLink">Registrarse</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <div class="container mt-4" id="mainContent">
+        <!-- Hero Section -->
+        <section class="hero-section text-center rounded-3" id="heroSection">
+            <div class="container">
+                <h1 class="display-4 fw-bold mb-3">Organiza Eventos Deportivos Escolares</h1>
+                <p class="lead">Plataforma especializada para la gestión de competencias deportivas en instituciones educativas</p>
+                <button class="btn btn-light btn-lg mt-3" id="getStartedBtn">Comenzar Ahora</button>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="mb-5" id="featuresSection">
+            <div class="row text-center">
+                <div class="col-md-4 mb-4">
+                    <div class="feature-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3>Gestión de Eventos</h3>
+                    <p>Organiza y programa competencias deportivas con facilidad</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Registro de Participantes</h3>
+                    <p>Inscripción sencilla para estudiantes y profesores</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="feature-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3>Seguimiento de Resultados</h3>
+                    <p>Control total de resultados y estadísticas</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sports Section -->
+        <section class="mb-5" id="sportsSection">
+            <h2 class="text-center mb-4">Nuestros Deportes</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card sport-card">
+                        <img src="img/img1.png" class="card-img-top sport-img" alt="Fútbol">
+                        <div class="card-body">
+                            <h5 class="card-title">Fútbol</h5>
+                            <p class="card-text">El deporte más popular del mundo. Desarrolla trabajo en equipo y resistencia.</p>
+                            <button class="btn btn-primary sport-detail-btn" data-sport="futbol">Ver Detalles</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card sport-card">
+                        <img src="img/img6.png" class="card-img-top sport-img" alt="Baloncesto">
+                        <div class="card-body">
+                            <h5 class="card-title">Baloncesto</h5>
+                            <p class="card-text">Deporte dinámico que mejora la coordinación y agilidad mental.</p>
+                            <button class="btn btn-primary sport-detail-btn" data-sport="baloncesto">Ver Detalles</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card sport-card">
+                        <img src="img/img3.png" class="card-img-top sport-img" alt="Voleibol">
+                        <div class="card-body">
+                            <h5 class="card-title">Voleibol</h5>
+                            <p class="card-text">Favorece la comunicación y reflejos rápidos entre los jugadores.</p>
+                            <button class="btn btn-primary sport-detail-btn" data-sport="voleibol">Ver Detalles</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card sport-card">
+                        <img src="img/img2.png" class="card-img-top sport-img" alt="Ping Pong">
+                        <div class="card-body">
+                            <h5 class="card-title">Ping Pong</h5>
+                            <p class="card-text">Mejora la concentración y movimientos precisos de manos y ojos.</p>
+                            <button class="btn btn-primary sport-detail-btn" data-sport="pingpong">Ver Detalles</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card sport-card">
+                        <img src="img/img5.png" class="card-img-top sport-img" alt="Atletismo">
+                        <div class="card-body">
+                            <h5 class="card-title">Atletismo</h5>
+                            <p class="card-text">Base fundamental para cualquier otro deporte. Mejora resistencia general.</p>
+                            <button class="btn btn-primary sport-detail-btn" data-sport="atletismo">Ver Detalles</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sport Details Modal -->
+        <div class="modal fade" id="sportDetailModal" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="sportDetailTitle">Detalles del Deporte</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body" id="sportDetailContent">
+                        <!-- Content will be loaded dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Projects Section -->
+        <section class="mb-5" id="projectsSection">
+            <h2 class="text-center mb-4">Proyectos Realizados</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card project-card">
+                        <img src="img/img7.png" class="card-img-top" alt="Colegio Nacional">
+                        <div class="card-body">
+                            <h5 class="card-title">Colegio Nacional</h5>
+                            <p class="card-text">Gestión completa de torneos intercursos durante todo el año académico.</p>
+                            <div class="review-card p-3">
+                                <p class="mb-1"><strong>"Excelente plataforma, muy fácil de usar"</strong></p>
+                                <small>- Director Académico</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card project-card">
+                        <img src="img/img8.png" class="card-img-top" alt="Instituto Modernidad">
+                        <div class="card-body">
+                            <h5 class="card-title">Instituto Modernidad</h5>
+                            <p class="card-text">Implementación de sistema de seguimiento de rendimiento deportivo.</p>
+                            <div class="review-card p-3">
+                                <p class="mb-1"><strong>"Ha revolucionado nuestra gestión deportiva"</strong></p>
+                                <small>- Coordinador Deportivo</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card project-card">
+                        <img src="img/img9.png" class="card-img-top" alt="Liceo Internacional">
+                        <div class="card-body">
+                            <h5 class="card-title">Liceo Internacional</h5>
+                            <p class="card-text">Organización de campeonatos multideportivos con más de 500 participantes.</p>
+                            <div class="review-card p-3">
+                                <p class="mb-1"><strong>"Resultados increíbles en organización"</strong></p>
+                                <small>- Profesor de Educación Física</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section class="mb-5" id="aboutSection">
+            <h2 class="text-center mb-4">Quiénes Somos</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-4 text-center mb-4">
+                    <div class="team-member">
+                        <img src="img/luv.png.jpg" class="rounded-circle team-img mb-3" alt="Luvin Tintin">
+                        <h5>Luvin Tintin</h5>
+                        <p class="text-muted">Fundador & CEO</p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center mb-4">
+                    <div class="team-member">
+                        <img src="img/val.png.jpg" class="rounded-circle team-img mb-3" alt="Valery Villanueva">
+                        <h5>Valery Villanueva</h5>
+                        <p class="text-muted">Directora de Operaciones</p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center mb-4">
+                    <div class="team-member">
+                        <img src="img/lau.png.jpg" class="rounded-circle team-img mb-3" alt="Laura Cruz">
+                        <h5>Laura Cruz</h5>
+                        <p class="text-muted">Gerente de Desarrollo</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Login Form -->
+    <div class="container auth-container" id="loginContainer" style="display: none;">
+        <h2 class="text-center mb-4">Iniciar Sesión</h2>
+        <form id="loginForm">
+            <div class="mb-3">
+                <label for="loginEmail" class="form-label">Correo Electrónico</label>
+                <input type="email" class="form-control" id="loginEmail" required>
+            </div>
+            <div class="mb-3">
+                <label for="loginPassword" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="loginPassword" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
+            <div class="text-center mt-3">
+                <a href="#" id="showRegisterLink">¿No tienes cuenta? Regístrate aquí</a>
+            </div>
+        </form>
+    </div>
+
+    <!-- Register Form -->
+    <div class="container auth-container" id="registerContainer" style="display: none;">
+        <h2 class="text-center mb-4">Registrarse</h2>
+        <form id="registerForm">
+            <div class="mb-3">
+                <label for="registerName" class="form-label">Nombre Completo</label>
+                <input type="text" class="form-control" id="registerName" required>
+            </div>
+            <div class="mb-3">
+                <label for="registerEmail" class="form-label">Correo Electrónico</label>
+                <input type="email" class="form-control" id="registerEmail" required>
+            </div>
+            <div class="mb-3">
+                <label for="registerPassword" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="registerPassword" required>
+            </div>
+            <div class="mb-3">
+                <label for="userType" class="form-label">Tipo de Usuario</label>
+                <select class="form-select" id="userType" required>
+                    <option value="">Selecciona tu rol</option>
+                    <option value="student">Estudiante</option>
+                    <option value="teacher">Profesor</option>
+                </select>
+            </div>
+            
+            <!-- Student specific fields -->
+            <div id="studentFields" style="display: none;">
+                <div class="mb-3">
+                    <label for="studentAge" class="form-label">Edad</label>
+                    <input type="number" class="form-control" id="studentAge" min="1" max="100" required>
+                </div>
+                <div class="mb-3">
+                    <label for="studentGrade" class="form-label">Grado</label>
+                    <select class="form-select" id="studentGrade" required>
+                        <option value="">Selecciona tu grado</option>
+                        <option value="601">Sexto 601</option>
+                        <option value="602">Sexto 602</option>
+                        <option value="603">Sexto 603</option>
+                        <option value="604">Sexto 604</option>
+                        <option value="605">Sexto 605</option>
+                        <option value="701">Séptimo 701</option>
+                        <option value="702">Séptimo 702</option>
+                        <option value="703">Séptimo 703</option>
+                        <option value="704">Séptimo 704</option>
+                        <option value="705">Séptimo 705</option>
+                        <option value="801">Octavo 801</option>
+                        <option value="802">Octavo 802</option>
+                        <option value="803">Octavo 803</option>
+                        <option value="804">Octavo 804</option>
+                        <option value="805">Octavo 805</option>
+                        <option value="901">Noveno 901</option>
+                        <option value="902">Noveno 902</option>
+                        <option value="903">Noveno 903</option>
+                        <option value="904">Noveno 904</option>
+                        <option value="905">Noveno 905</option>
+                        <option value="1001">Décimo 1001</option>
+                        <option value="1002">Décimo 1002</option>
+                        <option value="1003">Décimo 1003</option>
+                        <option value="1004">Décimo 1004</option>
+                        <option value="1005">Décimo 1005</option>
+                        <option value="1101">Undécimo 1101</option>
+                        <option value="1102">Undécimo 1102</option>
+                        <option value="1103">Undécimo 1103</option>
+                        <option value="1104">Undécimo 1104</option>
+                        <option value="1105">Undécimo 1105</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Deportes de Interés</label>
+                    <div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="futbol" id="sportFutbol">
+                            <label class="form-check-label" for="sportFutbol">Fútbol</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="baloncesto" id="sportBaloncesto">
+                            <label class="form-check-label" for="sportBaloncesto">Baloncesto</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="voleibol" id="sportVoleibol">
+                            <label class="form-check-label" for="sportVoleibol">Voleibol</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="pingpong" id="sportPingpong">
+                            <label class="form-check-label" for="sportPingpong">Ping Pong</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="atletismo" id="sportAtletismo">
+                            <label class="form-check-label" for="sportAtletismo">Atletismo</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <button type="submit" class="btn btn-primary w-100">Registrarse</button>
+            <div class="text-center mt-3">
+                <a href="#" id="showLoginLink">¿Ya tienes cuenta? Inicia sesión aquí</a>
+            </div>
+        </form>
+    </div>
+
+    <!-- Student Dashboard -->
+    <div class="container" id="studentDashboard" style="display: none;">
+        <div class="dashboard-header text-center">
+            <h1>Bienvenido, Estudiante</h1>
+            <p id="studentWelcomeText"></p>
+        </div>
+        
+        <div class="row mb-4">
+            <div class="col-md-8">
+                <h3>Mis Deportes</h3>
+                <div class="row" id="studentSportsContainer">
+                    <!-- Sports will be loaded here -->
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Beneficios del Deporte</h5>
+                        <p>Practicar deportes regularmente mejora tu salud física, fortalece el sistema cardiovascular, aumenta la resistencia y ayuda a mantener un peso saludable. Además, desarrolla habilidades sociales, trabajo en equipo y disciplina.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-4">
+            <button class="btn btn-secondary" id="logoutBtn">Cerrar Sesión</button>
+        </div>
+    </div>
+
+    <!-- Teacher Dashboard -->
+    <div class="container" id="teacherDashboard" style="display: none;">
+        <div class="dashboard-header text-center">
+            <h1>Bienvenido, Profesor</h1>
+            <p>Panel de Gestión de Eventos Deportivos</p>
+        </div>
+        
+        <div class="row mb-4">
+            <div class="col-md-8">
+                <h3>Crear Nuevo Evento</h3>
+                <div class="card">
+                    <div class="card-body">
+                        <form id="createEventForm">
+                            <div class="mb-3">
+                                <label for="eventSport" class="form-label">Deporte</label>
+                                <select class="form-select" id="eventSport" required>
+                                    <option value="">Selecciona un deporte</option>
+                                    <option value="futbol">Fútbol</option>
+                                    <option value="baloncesto">Baloncesto</option>
+                                    <option value="voleibol">Voleibol</option>
+                                    <option value="pingpong">Ping Pong</option>
+                                    <option value="atletismo">Atletismo</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="eventDate" class="form-label">Fecha</label>
+                                <input type="date" class="form-control" id="eventDate" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="eventTime" class="form-label">Hora</label>
+                                <input type="time" class="form-control" id="eventTime" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="eventLocation" class="form-label">Ubicación</label>
+                                <input type="text" class="form-control" id="eventLocation" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="eventDescription" class="form-label">Descripción</label>
+                                <textarea class="form-control" id="eventDescription" rows="3" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Crear Evento</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <h3 class="mt-4">Mis Eventos</h3>
+                <div id="teacherEventsContainer">
+                    <!-- Events will be loaded here -->
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Estadísticas</h5>
+                        <p><strong>Eventos Creados:</strong> <span id="eventsCount">0</span></p>
+                        <p><strong>Participantes Totales:</strong> <span id="participantsCount">0</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-4">
+            <button class="btn btn-secondary" id="logoutBtn2">Cerrar Sesión</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white mt-5 py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Fisika Group</h5>
+                    <p>Organización de eventos deportivos escolares de calidad</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <h5>Síguenos</h5>
+                    <div class="d-flex justify-content-md-end gap-3">
+                        <a href="https://facebook.com" target="_blank" class="social-icon">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://twitter.com" target="_blank" class="social-icon">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://instagram.com" target="_blank" class="social-icon">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://linkedin.com" target="_blank" class="social-icon">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center">
+                <p>&copy; 2025 Fisika Group. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Mock database simulation
+        const users = [
+            { email: "profesor@colegio.edu", password: "123456", type: "teacher", name: "Profesor García" },
+            { email: "estudiante@colegio.edu", password: "123456", type: "student", name: "Juan Pérez", age: 15, grade: "1001", sports: ["futbol", "baloncesto"] }
+        ];
+        
+        const events = [
+            { id: 1, sport: "futbol", date: "2025-03-15", time: "15:00", location: "Cancha Principal", description: "Torneo intercursos de fútbol masculino", createdBy: "Profesor García" },
+            { id: 2, sport: "baloncesto", date: "2025-03-20", time: "14:00", location: "Gimnasio Central", description: "Campeonato de baloncesto femenino", createdBy: "Profesor García" }
+        ];
+        
+        // DOM Elements
+        const mainContent = document.getElementById('mainContent');
+        const loginContainer = document.getElementById('loginContainer');
+        const registerContainer = document.getElementById('registerContainer');
+        const studentDashboard = document.getElementById('studentDashboard');
+        const teacherDashboard = document.getElementById('teacherDashboard');
+        const loginLink = document.getElementById('loginLink');
+        const registerLink = document.getElementById('registerLink');
+        const showRegisterLink = document.getElementById('showRegisterLink');
+        const showLoginLink = document.getElementById('showLoginLink');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const logoutBtn2 = document.getElementById('logoutBtn2');
+        const userType = document.getElementById('userType');
+        const studentFields = document.getElementById('studentFields');
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
+        const createEventForm = document.getElementById('createEventForm');
+        const sportDetailButtons = document.querySelectorAll('.sport-detail-btn');
+        
+        // Navigation
+        loginLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            hideAllSections();
+            loginContainer.style.display = 'block';
+        });
+        
+        registerLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            hideAllSections();
+            registerContainer.style.display = 'block';
+        });
+        
+        showRegisterLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginContainer.style.display = 'none';
+            registerContainer.style.display = 'block';
+        });
+        
+        showLoginLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            registerContainer.style.display = 'none';
+            loginContainer.style.display = 'block';
+        });
+        
+        logoutBtn.addEventListener('click', logout);
+        logoutBtn2.addEventListener('click', logout);
+        
+        // User Type Selection
+        userType.addEventListener('change', function() {
+            if (this.value === 'student') {
+                studentFields.style.display = 'block';
+            } else {
+                studentFields.style.display = 'none';
+            }
+        });
+        
+        // Login Form
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            const user = users.find(u => u.email === email && u.password === password);
+            
+            if (user) {
+                // Simulate sending email notification
+                console.log(`Correo enviado a luvinandresgomez123@gmail.com: Nuevo inicio de sesión de ${user.name}`);
+                
+                if (user.type === 'teacher') {
+                    showTeacherDashboard(user);
+                } else {
+                    showStudentDashboard(user);
+                }
+            } else {
+                alert('Credenciales incorrectas. Por favor, verifica tu correo y contraseña.');
+            }
+        });
+        
+        // Register Form
+        registerForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            const type = document.getElementById('userType').value;
+            
+            // Add new user to mock database
+            const newUser = { email, password, type, name };
+            
+            if (type === 'student') {
+                newUser.age = document.getElementById('studentAge').value;
+                newUser.grade = document.getElementById('studentGrade').value;
+                newUser.sports = [];
+                
+                // Get selected sports
+                document.querySelectorAll('input[type="checkbox"]:checked').forEach(checkbox => {
+                    newUser.sports.push(checkbox.value);
+                });
+            }
+            
+            users.push(newUser);
+            
+            // Simulate sending registration email
+            console.log(`Correo enviado a ${email}: Registro exitoso en Fisika Group`);
+            console.log(`Correo enviado a luvinandresgomez123@gmail.com: Nuevo registro de ${name}`);
+            
+            alert('Registro exitoso. Ahora puedes iniciar sesión.');
+            registerContainer.style.display = 'none';
+            loginContainer.style.display = 'block';
+        });
+        
+        // Create Event Form
+        createEventForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const sport = document.getElementById('eventSport').value;
+            const date = document.getElementById('eventDate').value;
+            const time = document.getElementById('eventTime').value;
+            const location = document.getElementById('eventLocation').value;
+            const description = document.getElementById('eventDescription').value;
+            
+            const newEvent = {
+                id: events.length + 1,
+                sport,
+                date,
+                time,
+                location,
+                description,
+                createdBy: "Profesor Actual"
+            };
+            
+            events.push(newEvent);
+            loadTeacherEvents();
+            createEventForm.reset();
+            alert('Evento creado exitosamente');
+        });
+        
+        // Sport Detail Buttons
+        sportDetailButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const sport = this.getAttribute('data-sport');
+                showSportDetails(sport);
+            });
+        });
+        
+        // Functions
+        function hideAllSections() {
+            mainContent.style.display = 'none';
+            loginContainer.style.display = 'none';
+            registerContainer.style.display = 'none';
+            studentDashboard.style.display = 'none';
+            teacherDashboard.style.display = 'none';
+        }
+        
+        function showMainContent() {
+            hideAllSections();
+            mainContent.style.display = 'block';
+        }
+        
+        function showStudentDashboard(user) {
+            hideAllSections();
+            studentDashboard.style.display = 'block';
+            
+            document.getElementById('studentWelcomeText').textContent = `Hola ${user.name}, estos son tus deportes seleccionados:`;
+            
+            const sportsContainer = document.getElementById('studentSportsContainer');
+            sportsContainer.innerHTML = '';
+            
+            if (user.sports && user.sports.length > 0) {
+                user.sports.forEach(sport => {
+                    const sportEvents = events.filter(e => e.sport === sport);
+                    const sportCard = document.createElement('div');
+                    sportCard.className = 'col-md-6 mb-3';
+                    sportCard.innerHTML = `
+                        <div class="card event-card">
+                            <div class="card-body">
+                                <h5 class="card-title">${getSportName(sport)}
+                                
+Próximos eventos relacionados con este deporte.
+
+
+                                Ver Detalles</button>
+                            </div>
+                        </div>
+                    `;
+                    sportsContainer.appendChild(sportCard);
+                });
+            } else {
+                sportsContainer.innerHTML = '<p class="text-muted">No has seleccionado ningún deporte aún.</p>';
+            }
+        }
+        
+        function showTeacherDashboard(user) {
+            hideAllSections();
+            teacherDashboard.style.display = 'block';
+            loadTeacherEvents();
+        }
+        
+        function loadTeacherEvents() {
+            const eventsContainer = document.getElementById('teacherEventsContainer');
+            eventsContainer.innerHTML = '';
+            
+            document.getElementById('eventsCount').textContent = events.length;
+            document.getElementById('participantsCount').textContent = events.length * 20; // Mock data
+            
+            events.forEach(event => {
+                const eventCard = document.createElement('div');
+                eventCard.className = 'card mb-3';
+                eventCard.innerHTML = `
+                    <div class="card-body">
+                        <h5 class="card-title">${getSportName(event.sport)}
+                        
+Fecha: ${event.date}</p>
+                        <p class="card-text"><strong>Hora:</strong> ${event.time}
+
+
+                        
+Ubicación: ${event.location}</p>
+                        <p class="card-text">${event.description}
+
+
+                        Ver Detalles</button> </div> `; eventsContainer.appendChild(eventCard); }); } function logout() { hideAllSections(); mainContent.style.display = 'block'; } function showSportDetails(sport) { const modalTitle = document.getElementById('sportDetailTitle'); const modalContent = document.getElementById('sportDetailContent'); const sportDetails = { futbol: { name: "Fútbol", description: "El fútbol es un deporte colectivo que se practica entre dos equipos de once jugadores cada uno. El objetivo es introducir el balón en la portería contraria haciendo uso principalmente de los pies.", benefits: "Desarrolla resistencia cardiovascular, fuerza muscular, coordinación y trabajo en equipo." }, baloncesto: { name: "Baloncesto", description: "El baloncesto es un deporte colectivo donde dos equipos de cinco jugadores compiten por encestar un balón en un aro ubicado a 3.05 metros de altura.", benefits: "Mejora la agilidad, velocidad, coordinación mano-ojo y toma de decisiones rápidas." }, voleibol: { name: "Voleibol", description: "El voleibol es un deporte colectivo donde dos equipos separados por una red intentan pasar el balón al campo contrario, buscando que toque el suelo.", benefits: "Fortalece brazos y piernas, mejora la coordinación y comunicación entre compañeros." }, pingpong: { name: "Ping Pong", description: "El tenis de mesa o ping pong es un deporte de raqueta que enfrenta a dos (individual) o cuatro jugadores (dobles) en una mesa dividida por una red.", benefits: "Aumenta la concentración, reflejos rápidos y movimientos precisos de manos y ojos." }, atletismo: { name: "Atletismo", description: "El atletismo comprende un conjunto de disciplinas agrupadas en carreras, saltos, lanzamientos y pruebas combinadas. Es considerado el deporte más completo.", benefits: "Mejora la resistencia general, fuerza, velocidad y flexibilidad. Base para cualquier otro deporte." } }; const detail = sportDetails[sport]; modalTitle.textContent = `Detalles de ${detail.name}`; modalContent.innerHTML = `
+${detail.description}</p> <h6>Beneficios:</h6> <p>${detail.benefits}</p> <h6>Próximos Eventos:</h6> <ul> <li>Torneo Escolar 2025 - Marzo 15, 2025</li> <li>Campeonato Regional - Abril 22, 2025</li> </ul> `; const modal = new bootstrap.Modal(document.getElementById('sportDetailModal')); modal.show(); } function getSportName(sportKey) { const names = { futbol: "Fútbol", baloncesto: "Baloncesto", voleibol: "Voleibol", pingpong: "Ping Pong", atletismo: "Atletismo" }; return names[sportKey] || sportKey; } // Initialize document.addEventListener('DOMContentLoaded', function() { // Set minimum date for event creation to 2025 const today = new Date(); const minDate = new Date(today.getFullYear() + 1, today.getMonth(), today.getDate()); document.getElementById('eventDate').min = minDate.toISOString().split('T')[0]; }); </script> </body> </html>
